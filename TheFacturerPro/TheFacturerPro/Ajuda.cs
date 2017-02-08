@@ -14,6 +14,7 @@ namespace TheFacturerPro
     {
         public Ajuda()
         {
+            StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
         }
     }
