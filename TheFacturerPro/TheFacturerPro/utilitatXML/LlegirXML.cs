@@ -9,6 +9,7 @@ using System.Xml.Linq;
 using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using System.IO;
 
 namespace TheFacturerPro.utilitatXML
 {
@@ -16,6 +17,7 @@ namespace TheFacturerPro.utilitatXML
     {
         private DataSet dataset;
         private String xmlFileName;
+        public DataSet newdataset;
 
         public LlegirXML(DataSet dataset, String xmlFileName)
         {
@@ -162,5 +164,18 @@ namespace TheFacturerPro.utilitatXML
                 }
             }
         }
+
+        public DataSet ReadXmlIntoDataSet()
+        {
+            using (FileStream fsReaderStream = new FileStream(this.xmlFileName, FileMode.Open))
+            {
+                using (XmlTextReader xmlReader = new XmlTextReader(fsReaderStream))
+                {
+                    this.newdataset.ReadXml(xmlReader, XmlReadMode.ReadSchema);
+                }
+            }
+            return newdataset;
+        }
     }
+
 }

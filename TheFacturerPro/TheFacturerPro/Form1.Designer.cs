@@ -76,19 +76,20 @@
             this.facturaTableAdapter = new TheFacturerPro.pcgroundDataSetTableAdapters.facturaTableAdapter();
             this.productesTableAdapter = new TheFacturerPro.pcgroundDataSetTableAdapters.productesTableAdapter();
             this.clientsBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.clientsBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabClients.SuspendLayout();
@@ -306,7 +307,7 @@
             this.tabFactures.Controls.Add(this.facturaDataGridView);
             this.tabFactures.Location = new System.Drawing.Point(4, 22);
             this.tabFactures.Name = "tabFactures";
-            this.tabFactures.Size = new System.Drawing.Size(650, 430);
+            this.tabFactures.Size = new System.Drawing.Size(797, 471);
             this.tabFactures.TabIndex = 2;
             this.tabFactures.Text = "Factures";
             this.tabFactures.UseVisualStyleBackColor = true;
@@ -326,7 +327,7 @@
             this.facturaDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.facturaDataGridView.Location = new System.Drawing.Point(0, 0);
             this.facturaDataGridView.Name = "facturaDataGridView";
-            this.facturaDataGridView.Size = new System.Drawing.Size(650, 430);
+            this.facturaDataGridView.Size = new System.Drawing.Size(797, 471);
             this.facturaDataGridView.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn12
@@ -369,7 +370,7 @@
             this.tabFacturesDetall.Controls.Add(this.factura_detallDataGridView);
             this.tabFacturesDetall.Location = new System.Drawing.Point(4, 22);
             this.tabFacturesDetall.Name = "tabFacturesDetall";
-            this.tabFacturesDetall.Size = new System.Drawing.Size(650, 430);
+            this.tabFacturesDetall.Size = new System.Drawing.Size(797, 471);
             this.tabFacturesDetall.TabIndex = 3;
             this.tabFacturesDetall.Text = "Factures detall";
             this.tabFacturesDetall.UseVisualStyleBackColor = true;
@@ -387,7 +388,7 @@
             this.factura_detallDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.factura_detallDataGridView.Location = new System.Drawing.Point(0, 0);
             this.factura_detallDataGridView.Name = "factura_detallDataGridView";
-            this.factura_detallDataGridView.Size = new System.Drawing.Size(650, 430);
+            this.factura_detallDataGridView.Size = new System.Drawing.Size(797, 471);
             this.factura_detallDataGridView.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn17
@@ -417,18 +418,20 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.pictureBox1, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.bExportar, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.bImportar, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.pictureBox1, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.button1, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(814, 25);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 25, 3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(94, 139);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(94, 220);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // bExportar
@@ -437,7 +440,7 @@
             this.bExportar.Location = new System.Drawing.Point(10, 10);
             this.bExportar.Margin = new System.Windows.Forms.Padding(10);
             this.bExportar.Name = "bExportar";
-            this.bExportar.Size = new System.Drawing.Size(74, 26);
+            this.bExportar.Size = new System.Drawing.Size(74, 38);
             this.bExportar.TabIndex = 0;
             this.bExportar.Text = "Exportar";
             this.bExportar.UseVisualStyleBackColor = true;
@@ -446,10 +449,10 @@
             // bImportar
             // 
             this.bImportar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bImportar.Location = new System.Drawing.Point(10, 56);
+            this.bImportar.Location = new System.Drawing.Point(10, 68);
             this.bImportar.Margin = new System.Windows.Forms.Padding(10);
             this.bImportar.Name = "bImportar";
-            this.bImportar.Size = new System.Drawing.Size(74, 26);
+            this.bImportar.Size = new System.Drawing.Size(74, 38);
             this.bImportar.TabIndex = 1;
             this.bImportar.Text = "Importar";
             this.bImportar.UseVisualStyleBackColor = true;
@@ -510,6 +513,37 @@
             this.clientsBindingNavigator.TabIndex = 1;
             this.clientsBindingNavigator.Text = "bindingNavigator1";
             // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorSeparator
+            // 
+            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorPositionItem
+            // 
+            this.bindingNavigatorPositionItem.AccessibleName = "Position";
+            this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
+            this.bindingNavigatorPositionItem.Text = "0";
+            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+            // 
+            // bindingNavigatorSeparator1
+            // 
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorSeparator2
+            // 
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // bindingNavigatorAddNewItem
             // 
             this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -518,13 +552,6 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
             // bindingNavigatorDeleteItem
             // 
@@ -553,25 +580,6 @@
             this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // bindingNavigatorMoveNextItem
             // 
             this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -590,11 +598,6 @@
             this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
             // clientsBindingNavigatorSaveItem
             // 
             this.clientsBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -608,13 +611,25 @@
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = global::TheFacturerPro.Properties.Resources.iconeAjuda;
-            this.pictureBox1.Location = new System.Drawing.Point(30, 102);
+            this.pictureBox1.Location = new System.Drawing.Point(30, 184);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(30, 10, 31, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(33, 32);
-            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.Size = new System.Drawing.Size(33, 31);
+            this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(10, 126);
+            this.button1.Margin = new System.Windows.Forms.Padding(10);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(1);
+            this.button1.Size = new System.Drawing.Size(74, 38);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Editar i Importar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -712,6 +727,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
