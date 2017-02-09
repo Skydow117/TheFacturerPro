@@ -14,6 +14,8 @@ namespace TheFacturerPro
 {
     public partial class Form1 : Form
     {
+        public DataSet datasetImportat;
+        public DataSet datasetImportatEditar;
         public Form1()
         {
             InitializeComponent();
@@ -94,19 +96,58 @@ namespace TheFacturerPro
                 string sFileName = choofdlog.FileName;
                 DataSet dataSet = this.pcgroundDataSet;
                 LlegirXML lector = new LlegirXML(dataSet, sFileName);
-
+                lector.llegirFitxer();
+                Actualitzador updater = new Actualitzador();
+                datasetImportat = updater.UpdateBindingNavigator();
+                clientsDataGridView.DataSource = datasetImportat.Tables[0];
+                productesDataGridView.DataSource = datasetImportat.Tables[1];
+                facturaDataGridView.DataSource = datasetImportat.Tables[2];
+                factura_detallDataGridView.DataSource = datasetImportat.Tables[3];
                 /*datasetImportat = DataTableHelper.UpdateBindingNavigator();
                 clientsDataGridView.DataSource = datasetImportat.Tables[0];   
                 productesDataGridView.DataSource = datasetImportat.Tables[1];
                 facturaDataGridView.DataSource = datasetImportat.Tables[2];
                 factura_detallDataGridView.DataSource = datasetImportat.Tables[3];*/
+                //ye
             }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Ajuda ajuda = new TheFacturerPro.Ajuda();
-            ajuda.Show();
+            //Ajuda ajuda = new TheFacturerPro.Ajuda();
+            //ajuda.Show();
+            Form2 form2 = new Form2();
+            form2.Show();
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog choof2dlog = new OpenFileDialog();
+            choof2dlog.Filter = "XML Files (*.xml)|*.xml";
+            choof2dlog.FilterIndex = 1;
+            choof2dlog.Multiselect = true;
+
+            if (choof2dlog.ShowDialog() == DialogResult.OK)
+            {
+                string sFileNamed = choof2dlog.FileName;
+                LlegirXML lector2 = new LlegirXML(datasetImportatEditar, sFileNamed);
+                datasetImportatEditar = lector2.ReadXmlIntoDataSet();
+                Form2 form2 = new Form2();
+                form2.setDataset(datasetImportatEditar);
+                form2.Show();
+                /*Actualitzador updater = new Actualitzador();
+                datasetImportat = updater.UpdateBindingNavigator();*/
+                /* clientsDataGridView.DataSource = datasetImportat.Tables[0];
+                 productesDataGridView.DataSource = datasetImportat.Tables[1];
+                 facturaDataGridView.DataSource = datasetImportat.Tables[2];
+                 factura_detallDataGridView.DataSource = datasetImportat.Tables[3];*/
+            }
         }
     }
 }
