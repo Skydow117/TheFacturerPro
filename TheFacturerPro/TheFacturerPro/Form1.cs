@@ -14,6 +14,7 @@ namespace TheFacturerPro
 {
     public partial class Form1 : Form
     {
+        public DataSet datasetImportat;
         public Form1()
         {
             InitializeComponent();
@@ -94,7 +95,13 @@ namespace TheFacturerPro
                 string sFileName = choofdlog.FileName;
                 DataSet dataSet = this.pcgroundDataSet;
                 LlegirXML lector = new LlegirXML(dataSet, sFileName);
-
+                lector.llegirFitxer();
+                Actualitzador updater = new Actualitzador();
+                datasetImportat = updater.UpdateBindingNavigator();
+                clientsDataGridView.DataSource = datasetImportat.Tables[0];
+                productesDataGridView.DataSource = datasetImportat.Tables[1];
+                facturaDataGridView.DataSource = datasetImportat.Tables[2];
+                factura_detallDataGridView.DataSource = datasetImportat.Tables[3];
                 /*datasetImportat = DataTableHelper.UpdateBindingNavigator();
                 clientsDataGridView.DataSource = datasetImportat.Tables[0];   
                 productesDataGridView.DataSource = datasetImportat.Tables[1];
