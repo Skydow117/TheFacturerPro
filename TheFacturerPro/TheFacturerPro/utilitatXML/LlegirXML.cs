@@ -25,7 +25,7 @@ namespace TheFacturerPro.utilitatXML
             this.xmlFileName = xmlFileName;
         }
 
-        public void llegirFitxer()
+        public void llegirFitxer(bool borrar)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(this.xmlFileName);
@@ -51,9 +51,16 @@ namespace TheFacturerPro.utilitatXML
                         }
                         try
                         {
+
+                            if (borrar)
+                            {
+                                borrarDadesTaules();
+                            }
+
                             conn = new MySql.Data.MySqlClient.MySqlConnection();
                             conn.ConnectionString = myConnectionString;
                             MySqlCommand command = conn.CreateCommand();
+
                             command.CommandText = "INSERT INTO clients (id_Client,Nom,Cognom1,Cognom2,Adreça,Codi_Postal,Població,Província,Telèfon,Fax,Email) VALUES (?id_Client,?Nom,?Cognom1,?Cognom2,?Adreça,?Codi_Postal,?Població,?Província,?Telèfon,?Fax,?Email)";
                             //command.CommandText = "INSERT INTO clients (id_Client,Nom,Cognom1,Cognom2,Adreça,Codi_Postal,Població,Província,Telèfon,Fax) VALUES (?id_Client,?Nom,?Cognom1,?Cognom2,?Adreça,?Codi_Postal,?Població,?Província,?Telèfon,?Fax)";
                             command.Parameters.AddWithValue("?id_Client", clients[0]);
@@ -163,6 +170,34 @@ namespace TheFacturerPro.utilitatXML
                         break;
                 }
             }
+        }
+
+        public void borrarDadesTaules() {
+
+            List<string> strTaules = new List<string>();
+            strTaules.Add("factura_detall");
+            strTaules.Add("factura");
+            strTaules.Add("productes");
+            strTaules.Add("clients");
+
+            foreach (var strTaula in strTaules)
+            {
+                MySql.Data.MySqlClient.MySqlConnection conn;
+                string myConnectionString;
+                myConnectionString = "Database = pcground; Password = root; Port = 3307; Server = localhost; User = root";
+
+
+                conn = new MySql.Data.MySqlClient.MySqlConnection();
+                conn.ConnectionString = myConnectionString;
+                MySqlCommand command = conn.CreateCommand();
+
+                command.CommandText = "DELETE FROM ?taula";
+                command.Parameters.AddWithValue("?taula", strTaula);
+
+                conn.Open();
+                command.ExecuteNonQuery();
+            }
+
         }
 
         public DataSet ReadXmlIntoDataSet()

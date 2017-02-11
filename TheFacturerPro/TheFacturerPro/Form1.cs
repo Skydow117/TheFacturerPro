@@ -93,22 +93,40 @@ namespace TheFacturerPro
             if (choofdlog.ShowDialog() == DialogResult.OK)
 
             {
-                string sFileName = choofdlog.FileName;
-                DataSet dataSet = this.pcgroundDataSet;
-                LlegirXML lector = new LlegirXML(dataSet, sFileName);
-                lector.llegirFitxer();
-                Actualitzador updater = new Actualitzador();
-                datasetImportat = updater.UpdateBindingNavigator();
-                clientsDataGridView.DataSource = datasetImportat.Tables[0];
-                productesDataGridView.DataSource = datasetImportat.Tables[1];
-                facturaDataGridView.DataSource = datasetImportat.Tables[2];
-                factura_detallDataGridView.DataSource = datasetImportat.Tables[3];
-                /*datasetImportat = DataTableHelper.UpdateBindingNavigator();
-                clientsDataGridView.DataSource = datasetImportat.Tables[0];   
-                productesDataGridView.DataSource = datasetImportat.Tables[1];
-                facturaDataGridView.DataSource = datasetImportat.Tables[2];
-                factura_detallDataGridView.DataSource = datasetImportat.Tables[3];*/
-                //ye
+                DialogResult dialogResult = MessageBox.Show("Si acceptes borraràs les dades actuals que conté la base de dades i afegiràs les noves. En càs contrari, simplement s'afegiràn aquelles entrades que no hi siguin ja.", "Borrar les dades actuals?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Console.WriteLine("Yes");
+
+                    string sFileName = choofdlog.FileName;
+                    DataSet dataSet = this.pcgroundDataSet;
+                    LlegirXML lector = new LlegirXML(dataSet, sFileName);
+                    lector.llegirFitxer(true);
+                    Actualitzador updater = new Actualitzador();
+                    datasetImportat = updater.UpdateBindingNavigator();
+                    clientsDataGridView.DataSource = datasetImportat.Tables[0];
+                    productesDataGridView.DataSource = datasetImportat.Tables[1];
+                    facturaDataGridView.DataSource = datasetImportat.Tables[2];
+                    factura_detallDataGridView.DataSource = datasetImportat.Tables[3];
+
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    Console.WriteLine("No");
+
+                    string sFileName = choofdlog.FileName;
+                    DataSet dataSet = this.pcgroundDataSet;
+                    LlegirXML lector = new LlegirXML(dataSet, sFileName);
+                    lector.llegirFitxer(false);
+                    Actualitzador updater = new Actualitzador();
+                    datasetImportat = updater.UpdateBindingNavigator();
+                    clientsDataGridView.DataSource = datasetImportat.Tables[0];
+                    productesDataGridView.DataSource = datasetImportat.Tables[1];
+                    facturaDataGridView.DataSource = datasetImportat.Tables[2];
+                    factura_detallDataGridView.DataSource = datasetImportat.Tables[3];
+
+                }
+               
             }
         }
 
@@ -122,8 +140,10 @@ namespace TheFacturerPro
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
-            form2.Show();
+            //Form2 form2 = new Form2();
+            //form2.Show();
+            Ajuda ajuda = new Ajuda();
+            ajuda.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -148,6 +168,11 @@ namespace TheFacturerPro
                  facturaDataGridView.DataSource = datasetImportat.Tables[2];
                  factura_detallDataGridView.DataSource = datasetImportat.Tables[3];*/
             }
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

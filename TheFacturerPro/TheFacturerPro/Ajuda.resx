@@ -117,4 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Facturer Pro es un programa per a l'edició de bases de dades i
+l'importació i exportació d'aquestes en formal xml.
+
+També permet l'edició massiva de dades durant l'importació 
+d'una base de dades.
+
+Per últim recalcar que podem triar si borrar o no la base de da-
+des utilitzant el checkbox que apareixerà.
+
+Per importar o exportar nomès cal fer ús dels botons a la part su-
+perior de la barra de la dreta.
+
+</value>
+  </data>
 </root>
