@@ -17,6 +17,7 @@ namespace TheFacturerPro
         public DataSet datasetTemporal= new DataSet();
         public Form2()
         {
+            StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
         }
 

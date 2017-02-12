@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 using System.IO;
+using System.Configuration;
 
 namespace TheFacturerPro.utilitatXML
 {
@@ -18,22 +19,28 @@ namespace TheFacturerPro.utilitatXML
         private DataSet dataset;
         private String xmlFileName;
         public DataSet newdataset= new DataSet();
+        string myConnectionString;
+
 
         public LlegirXML(DataSet dataset, String xmlFileName)
         {
             this.dataset = dataset;
             this.xmlFileName = xmlFileName;
+            myConnectionString = ConfigurationManager.ConnectionStrings["TheFacturerPro.Properties.Settings.pcgroundConnectionString"].ConnectionString;
         }
 
         public void llegirFitxer(bool borrar)
         {
+            if (borrar)
+            {
+                borrarDadesTaules();
+            }
+
             XmlDocument doc = new XmlDocument();
             doc.Load(this.xmlFileName);
             XmlElement root = doc.DocumentElement;
             XmlNodeList nodes = root.SelectNodes("/descendant-or-self::node()");
             MySql.Data.MySqlClient.MySqlConnection conn;
-            string myConnectionString;
-            myConnectionString = "Database = pcground; Password = root; Port = 3307; Server = localhost; User = root";
 
             //List<string> parts = new List<string>();
             foreach (XmlNode node in nodes)
@@ -51,11 +58,6 @@ namespace TheFacturerPro.utilitatXML
                         }
                         try
                         {
-
-                            if (borrar)
-                            {
-                                borrarDadesTaules();
-                            }
 
                             conn = new MySql.Data.MySqlClient.MySqlConnection();
                             conn.ConnectionString = myConnectionString;
@@ -102,7 +104,16 @@ namespace TheFacturerPro.utilitatXML
                             command.Parameters.AddWithValue("?id_Client", factures[1]);
                             command.Parameters.AddWithValue("?Data", factures[2]);
                             command.Parameters.AddWithValue("?Descompte", factures[3]);
-                            command.Parameters.AddWithValue("?IVA", factures[4]);
+                            if (factures.Count > 4) {
+                                Console.WriteLine("Entrada1->" + factures[4]);
+                                int enter = Convert.ToInt32(factures[4]);
+                                Console.WriteLine("Enter ->" + enter);
+                                command.Parameters.AddWithValue("?IVA", factures[4]);
+                            } else {
+                                command.Parameters.AddWithValue("?IVA",1.ToString());
+
+                            }
+
                             conn.Open();
                             command.ExecuteNonQuery();
                         }
@@ -174,32 +185,30 @@ namespace TheFacturerPro.utilitatXML
 
         public void borrarDadesTaules() {
 
-            List<string> strTaules = new List<string>();
-            strTaules.Add("factura_detall");
-            strTaules.Add("factura");
-            strTaules.Add("productes");
-            strTaules.Add("clients");
-
-            foreach (var strTaula in strTaules)
-            {
-                MySql.Data.MySqlClient.MySqlConnection conn;
-                string myConnectionString;
-                myConnectionString = "Database = pcground; Password = root; Port = 3307; Server = localhost; User = root";
-
-
-                conn = new MySql.Data.MySqlClient.MySqlConnection();
-                conn.ConnectionString = myConnectionString;
-                MySqlCommand command = conn.CreateCommand();
-
-                command.CommandText = "DELETE FROM ?taula";
-                command.Parameters.AddWithValue("?taula", strTaula);
-
-                conn.Open();
-                command.ExecuteNonQuery();
-            }
+            borrarTaula("factura_detall");
+            borrarTaula("factura");
+            borrarTaula("productes");
+            borrarTaula("clients");
 
         }
 
+        public void borrarTaula(string nom) {
+
+            MySqlConnection conn;
+
+            conn = new MySqlConnection();
+            conn.ConnectionString = myConnectionString;
+            MySqlCommand command = conn.CreateCommand();
+
+            command.CommandText = "DELETE FROM " + nom;
+
+
+            Console.WriteLine("Delete");
+            conn.Open();
+            command.ExecuteNonQuery();
+
+
+        }
         public DataSet ReadXmlIntoDataSet()
         {
             this.newdataset.ReadXml(this.xmlFileName, XmlReadMode.InferSchema);

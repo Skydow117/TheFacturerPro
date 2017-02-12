@@ -640,7 +640,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.clientsBindingNavigator);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Facturer Pro";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);

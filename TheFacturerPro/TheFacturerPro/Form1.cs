@@ -18,6 +18,7 @@ namespace TheFacturerPro
         public DataSet datasetImportatEditar;
         public Form1()
         {
+            StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             //hola
         }
@@ -144,6 +145,7 @@ namespace TheFacturerPro
             //form2.Show();
             Ajuda ajuda = new Ajuda();
             ajuda.Show();
+
         }
 
         private void button1_Click(object sender, EventArgs e)

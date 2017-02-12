@@ -609,7 +609,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.clientsBindingNavigator);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "Editor d\'importació";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
