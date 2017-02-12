@@ -12,21 +12,19 @@ using TheFacturerPro.utilitatXML;
 
 namespace TheFacturerPro
 {
-    public partial class Form2 : Form
+    public partial class EditorImports : Form
     {
         public DataSet datasetImportatEditar;
         public DataSet datasetTemporal= new DataSet();
-        public Form2()
+
+        //Inicia i centra el formulari
+        public EditorImports()
         {
             StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
         }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+      
+        //Valida i guardar el contingut de les taules al dataset.
         private void clientsBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
@@ -35,19 +33,17 @@ namespace TheFacturerPro
 
         }
 
+        //Plena les taules amb la taula corresponent del dataset.
         private void Form2_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'pcgroundDataSet.factura_detall' table. You can move, or remove it, as needed.
             this.factura_detallTableAdapter.Fill(this.pcgroundDataSet.factura_detall);
-            // TODO: This line of code loads data into the 'pcgroundDataSet.factura' table. You can move, or remove it, as needed.
             this.facturaTableAdapter.Fill(this.pcgroundDataSet.factura);
-            // TODO: This line of code loads data into the 'pcgroundDataSet.productes' table. You can move, or remove it, as needed.
             this.productesTableAdapter.Fill(this.pcgroundDataSet.productes);
-            // TODO: This line of code loads data into the 'pcgroundDataSet.clients' table. You can move, or remove it, as needed.
             this.clientsTableAdapter.Fill(this.pcgroundDataSet.clients);
 
         }
 
+        //Canvia el BindingSource del navegador a la taula correcte quan canviem de pestanya.
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (tabControl1.SelectedIndex)
@@ -67,6 +63,7 @@ namespace TheFacturerPro
             }
         }
 
+        //Canvia el contingut de les taules per el de les importades.
         public void setDataset(DataSet datasetImportatEditarD) {
             this.datasetImportatEditar = datasetImportatEditarD;
             clientsDataGridView.DataSource = datasetImportatEditar.Tables[0];
@@ -75,16 +72,10 @@ namespace TheFacturerPro
             factura_detallDataGridView.DataSource = datasetImportatEditar.Tables[3];
         }
 
+        //Inserta les taules d'aquest formulari a les de la base de dades i la pagina principal.
         private void button1_Click(object sender, EventArgs e)
         {
-            /* GridView1.DataSource = ds;
-
-             Session["GridDataset"] = ds.Tables[0];
-
-             then after postbac, read data from session variable
-
-
-             DataTable dt = (DataTable)Session["GridDataset"];*/
+            
 
             if (checkBox1.Checked) {
                 LlegirXML lector = new LlegirXML();
@@ -103,14 +94,9 @@ namespace TheFacturerPro
         }
 
         
-        // Display the columns and value of DataTable.
+        // Llista les columnes de cada taula del dataset i fa els corresponents inserts.
         private static void ShowDataTable(DataTable table,string id)
         {
-            /* foreach (DataColumn col in table.Columns)
-             {
-                 Console.Write("{0,-14}", col.ColumnName);
-             }*/
-
            
             Console.WriteLine("{0,-14}", "");
 
@@ -124,7 +110,6 @@ namespace TheFacturerPro
                         if (col.DataType.Equals(typeof(DateTime)))
                         {
                             Console.Write("{0,-14:d}", row[col, DataRowVersion.Original]);
-                            //clients.AddRange("{0,-14:d}", row[col, DataRowVersion.Original]);
                         }
                         else if (col.DataType.Equals(typeof(Decimal)))
                         {
@@ -140,37 +125,31 @@ namespace TheFacturerPro
                 {
                     foreach (DataColumn col in table.Columns)
                     {
-                        //Console.WriteLine(row[col]);
                         if (col.DataType.Equals(typeof(DateTime)))
                         {
-                            //Console.Write("{0,-14:d}", row[col]);
                             var value=String.Format("{0,-14:d}", row[col]);
                             list.Add(value);
                         }
                         else if (col.DataType.Equals(typeof(Decimal)))
                         {
-                            //Console.Write("{0,-14:C}", row[col]);
                             var value = String.Format("{0,-14:C}", row[col]);
                             list.Add(value);
                         }
                         else
                         {
-                            //Console.Write("{0,-14}", row[col]);
                             var value = String.Format("{0,-14}", row[col]);
                             list.Add(value);
                         }
                     }
                 }
+
                 insertRegister(list, id);
 
                 Console.WriteLine("{0,-14}", "");
-            }
-           /* foreach (string c in list) {
-                Console.WriteLine(c);
-            }*/
-            
+            }            
         }
 
+        //Crea les consultes amb els inserts i les llança a la base de dades.
         public static void insertRegister(List<string> list, string id) {
             MySql.Data.MySqlClient.MySqlConnection conn;
             string myConnectionString;
@@ -185,7 +164,6 @@ namespace TheFacturerPro
                         MySqlCommand command = conn.CreateCommand();
 
                         command.CommandText = "INSERT INTO clients (id_Client,Nom,Cognom1,Cognom2,Adreça,Codi_Postal,Població,Província,Telèfon,Fax,Email) VALUES (?id_Client,?Nom,?Cognom1,?Cognom2,?Adreça,?Codi_Postal,?Població,?Província,?Telèfon,?Fax,?Email)";
-                        //command.CommandText = "INSERT INTO clients (id_Client,Nom,Cognom1,Cognom2,Adreça,Codi_Postal,Població,Província,Telèfon,Fax) VALUES (?id_Client,?Nom,?Cognom1,?Cognom2,?Adreça,?Codi_Postal,?Població,?Província,?Telèfon,?Fax)";
                         command.Parameters.AddWithValue("?id_Client", list[0]);
                         command.Parameters.AddWithValue("?Nom", list[1]);
                         command.Parameters.AddWithValue("?Cognom1", list[2]);

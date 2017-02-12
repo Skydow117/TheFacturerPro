@@ -10,16 +10,19 @@ using System.Xml;
 
 namespace TheFacturerPro.utilitatXML
 {
+    //Exporta un XML amb la informació de les taules de la base de dades.
     class EscriureXML
     {
         private DataSet dataset;
         private String xmlFileName;
 
+        //Contructor on li passem un dataset i el nom que tindrà el fitser xml.
         public EscriureXML(DataSet dataset, String xmlFileName) {
             this.dataset = dataset;
             this.xmlFileName = xmlFileName;
         }
 
+        //Crea un fitxer XML amb el seu XMLScheme basat en el dataSet de la classe.
         public void exportarFitxer() {
             try
             {

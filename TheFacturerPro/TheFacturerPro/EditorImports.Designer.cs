@@ -1,6 +1,6 @@
 ﻿namespace TheFacturerPro
 {
-    partial class Form2
+    partial class EditorImports
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditorImports));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -601,14 +601,14 @@
             this.clientsBindingNavigatorSaveItem.Text = "Save Data";
             this.clientsBindingNavigatorSaveItem.Click += new System.EventHandler(this.clientsBindingNavigatorSaveItem_Click);
             // 
-            // Form2
+            // EditorImports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(622, 439);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.clientsBindingNavigator);
-            this.Name = "Form2";
+            this.Name = "EditorImports";
             this.Text = "Editor d\'importació";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

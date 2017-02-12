@@ -14,6 +14,7 @@ using System.Configuration;
 
 namespace TheFacturerPro.utilitatXML
 {
+    //Importa un fitxer XML.
     class LlegirXML
     {
         private DataSet dataset;
@@ -21,11 +22,12 @@ namespace TheFacturerPro.utilitatXML
         public DataSet newdataset= new DataSet();
         string myConnectionString;
 
+        //Constructor simple. On només s'inicia el connectionString.
         public LlegirXML() {
             myConnectionString = ConfigurationManager.ConnectionStrings["TheFacturerPro.Properties.Settings.pcgroundConnectionString"].ConnectionString;
         }
 
-
+        //Constructor on li passem un dataSet al qual importar i el fitxer d'on extreurem l'informaciò.
         public LlegirXML(DataSet dataset, String xmlFileName)
         {
             this.dataset = dataset;
@@ -33,6 +35,8 @@ namespace TheFacturerPro.utilitatXML
             myConnectionString = ConfigurationManager.ConnectionStrings["TheFacturerPro.Properties.Settings.pcgroundConnectionString"].ConnectionString;
         }
 
+        //Llegeix l'informació i prepara les consultes per a ser insertades. 
+        //El paràmetre serveix per si volem borrar les dades anteriors o no.
         public void llegirFitxer(bool borrar)
         {
             if (borrar)
@@ -46,7 +50,6 @@ namespace TheFacturerPro.utilitatXML
             XmlNodeList nodes = root.SelectNodes("/descendant-or-self::node()");
             MySql.Data.MySqlClient.MySqlConnection conn;
 
-            //List<string> parts = new List<string>();
             foreach (XmlNode node in nodes)
             {
                 switch (node.Name)
@@ -57,7 +60,6 @@ namespace TheFacturerPro.utilitatXML
                         List<string> clients = new List<string>();
                         foreach (XmlNode node01 in childones03)
                         {
-                            //Console.WriteLine(node01.Name + " -> " + node01.InnerText);
                             clients.Add(node01.InnerText);
                         }
                         try
@@ -68,7 +70,6 @@ namespace TheFacturerPro.utilitatXML
                             MySqlCommand command = conn.CreateCommand();
 
                             command.CommandText = "INSERT INTO clients (id_Client,Nom,Cognom1,Cognom2,Adreça,Codi_Postal,Població,Província,Telèfon,Fax,Email) VALUES (?id_Client,?Nom,?Cognom1,?Cognom2,?Adreça,?Codi_Postal,?Població,?Província,?Telèfon,?Fax,?Email)";
-                            //command.CommandText = "INSERT INTO clients (id_Client,Nom,Cognom1,Cognom2,Adreça,Codi_Postal,Població,Província,Telèfon,Fax) VALUES (?id_Client,?Nom,?Cognom1,?Cognom2,?Adreça,?Codi_Postal,?Població,?Província,?Telèfon,?Fax)";
                             command.Parameters.AddWithValue("?id_Client", clients[0]);
                             command.Parameters.AddWithValue("?Nom", clients[1]);
                             command.Parameters.AddWithValue("?Cognom1", clients[2]);
@@ -95,7 +96,6 @@ namespace TheFacturerPro.utilitatXML
                         List<string> factures = new List<string>();
                         foreach (XmlNode node01 in childones01)
                         {
-                            //Console.WriteLine(node01.Name + " -> " + node01.InnerText);
                             factures.Add(node01.InnerText);
                         }
                         try
@@ -133,7 +133,6 @@ namespace TheFacturerPro.utilitatXML
                         List<string> productes = new List<string>();
                         foreach (XmlNode node01 in childones02)
                         {
-                            //Console.WriteLine(node01.Name + " -> " + node01.InnerText);
                             productes.Add(node01.InnerText);
                         }
                         try
@@ -162,7 +161,6 @@ namespace TheFacturerPro.utilitatXML
                         List<string> facturesDetall = new List<string>();
                         foreach (XmlNode node01 in childones04)
                         {
-                            //Console.WriteLine(node01.Name + " -> " + node01.InnerText);
                             facturesDetall.Add(node01.InnerText);
                         }
                         try
@@ -187,6 +185,7 @@ namespace TheFacturerPro.utilitatXML
             }
         }
 
+        //Llança les ordres per borrar els registres de les taules.
         public void borrarDadesTaules() {
 
             borrarTaula("factura_detall");
@@ -196,6 +195,7 @@ namespace TheFacturerPro.utilitatXML
 
         }
 
+        //Borra els registres de la taula indicada.
         public void borrarTaula(string nom) {
 
             MySqlConnection conn;
@@ -213,17 +213,12 @@ namespace TheFacturerPro.utilitatXML
 
 
         }
+
+        //Retorna una DataSet amb les dades extretes d'un XML.
         public DataSet ReadXmlIntoDataSet()
         {
             this.newdataset.ReadXml(this.xmlFileName, XmlReadMode.InferSchema);
-            /* using (FileStream fsReaderStream = new FileStream(this.xmlFileName, FileMode.Open))
-             {
-                 using (XmlTextReader xmlReader = new XmlTextReader(fsReaderStream))
-                 {
-                     this.newdataset.ReadXml(xmlReader, XmlReadMode.InferSchema);
-                 }
-             }*/
-             return newdataset;
+            return newdataset;
 
          }
         }

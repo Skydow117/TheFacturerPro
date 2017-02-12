@@ -12,16 +12,20 @@ using TheFacturerPro.utilitatXML;
 
 namespace TheFacturerPro
 {
-    public partial class Form1 : Form
+    //Classe principal. Amb les taules i els botons dels imports i exports.
+    public partial class Principal : Form
     {
         public DataSet datasetImportat;
         public DataSet datasetImportatEditar;
-        public Form1()
+
+        //Constructor que centra el formulari a la pantalla.
+        public Principal()
         {
             StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
         }
 
+        //Mètode que guarda els canvis de les taules a la BD.
         private void clientsBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             try { 
@@ -34,6 +38,7 @@ namespace TheFacturerPro
 
         }
 
+        //Mètode que emplena les taules amb els corresponents datasets quan el formulari es carrega.
         private void Form1_Load(object sender, EventArgs e)
         {
             StartPosition = FormStartPosition.CenterScreen;
@@ -46,6 +51,7 @@ namespace TheFacturerPro
 
         }
 
+        //Canvia el BindingSource del navegador a la taula correcte quan canviem de pestanya.
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (tabControl1.SelectedIndex)
@@ -65,6 +71,7 @@ namespace TheFacturerPro
             }
         }
 
+        //Exporta les taules en format xml alli on li diguis amb el nom que vulguis.
         private void bExportar_Click(object sender, EventArgs e)
         {
            
@@ -87,6 +94,7 @@ namespace TheFacturerPro
             }
         }
 
+        //Importa un fitxer xml i el posa directament a les taules. Sense edició. Després 
         private void bImportar_Click(object sender, EventArgs e)
         {
             OpenFileDialog choofdlog = new OpenFileDialog();
@@ -134,23 +142,15 @@ namespace TheFacturerPro
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            //Ajuda ajuda = new TheFacturerPro.Ajuda();
-            //ajuda.Show();
-            Form2 form2 = new Form2();
-            form2.Show();
-        }
-
+        //Mostra el formulari d'ajuda.
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
-            //Form2 form2 = new Form2();
-            //form2.Show();
             Ajuda ajuda = new Ajuda();
             ajuda.Show();
 
         }
 
+        //Importa un fitxer xml i el posa a les taules passant abans per un formulari d'edicció.
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog choof2dlog = new OpenFileDialog();
@@ -164,29 +164,13 @@ namespace TheFacturerPro
                 LlegirXML lector2 = new LlegirXML(datasetImportatEditar, sFileNamed);
                 datasetImportatEditar = lector2.ReadXmlIntoDataSet();
 
-                /*Form2 form2 = new Form2();
-                form2.setDataset(datasetImportatEditar);
-                form2.Show();*/
+                
 
-                Form2 formulari = new Form2();
+                EditorImports formulari = new EditorImports();
                 formulari.setDataset(datasetImportatEditar);
                 formulari.Show();
-
-                /*Actualitzador updater = new Actualitzador();
-                datasetImportat = updater.UpdateBindingNavigator();
-
-                clientsDataGridView.DataSource = datasetImportat.Tables[0];
-                 productesDataGridView.DataSource = datasetImportat.Tables[1];
-                 facturaDataGridView.DataSource = datasetImportat.Tables[2];
-                 factura_detallDataGridView.DataSource = datasetImportat.Tables[3];*/
             }
         }
-
-
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-        
+   
     }
 }
