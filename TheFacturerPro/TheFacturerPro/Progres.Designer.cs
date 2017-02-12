@@ -47,7 +47,7 @@
             this.MaximumSize = new System.Drawing.Size(450, 145);
             this.MinimumSize = new System.Drawing.Size(450, 145);
             this.Name = "Progres";
-            this.Text = "Progres";
+            this.Text = "Conectant amb la base de dades...";
             this.ResumeLayout(false);
 
         }

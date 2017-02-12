@@ -25,9 +25,13 @@ namespace TheFacturerPro
 
         private void clientsBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.clientsBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.pcgroundDataSet);
+            try { 
+                this.Validate();
+                this.clientsBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.pcgroundDataSet);
+            }catch(Exception) {
+                MessageBox.Show("Quelcom ha sortit malament. Si segueix sense funcionar li preguem tanqui i torni a engegar el programa. Gràcies");
+            }
 
         }
 
@@ -161,21 +165,29 @@ namespace TheFacturerPro
                 LlegirXML lector2 = new LlegirXML(datasetImportatEditar, sFileNamed);
                 datasetImportatEditar = lector2.ReadXmlIntoDataSet();
 
-                Form2 form2 = new Form2();
+                /*Form2 form2 = new Form2();
                 form2.setDataset(datasetImportatEditar);
-                form2.Show();
+                form2.Show();*/
+
+                Form2 formulari = new Form2();
+                formulari.setDataset(datasetImportatEditar);
+                formulari.Show();
+
                 /*Actualitzador updater = new Actualitzador();
-                datasetImportat = updater.UpdateBindingNavigator();*/
-                /* clientsDataGridView.DataSource = datasetImportat.Tables[0];
+                datasetImportat = updater.UpdateBindingNavigator();
+
+                clientsDataGridView.DataSource = datasetImportat.Tables[0];
                  productesDataGridView.DataSource = datasetImportat.Tables[1];
                  facturaDataGridView.DataSource = datasetImportat.Tables[2];
                  factura_detallDataGridView.DataSource = datasetImportat.Tables[3];*/
             }
         }
 
+
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
+        
     }
 }

@@ -21,6 +21,10 @@ namespace TheFacturerPro.utilitatXML
         public DataSet newdataset= new DataSet();
         string myConnectionString;
 
+        public LlegirXML() {
+            myConnectionString = ConfigurationManager.ConnectionStrings["TheFacturerPro.Properties.Settings.pcgroundConnectionString"].ConnectionString;
+        }
+
 
         public LlegirXML(DataSet dataset, String xmlFileName)
         {

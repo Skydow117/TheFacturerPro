@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TheFacturerPro.utilitatXML;
 
 namespace TheFacturerPro
 {
@@ -84,6 +85,12 @@ namespace TheFacturerPro
 
 
              DataTable dt = (DataTable)Session["GridDataset"];*/
+
+            if (checkBox1.Checked) {
+                LlegirXML lector = new LlegirXML();
+                lector.borrarDadesTaules();                
+            }
+
             DataTable cs = clientsDataGridView.DataSource as DataTable;
             DataTable ps = productesDataGridView.DataSource as DataTable;
             DataTable fs = facturaDataGridView.DataSource as DataTable;
