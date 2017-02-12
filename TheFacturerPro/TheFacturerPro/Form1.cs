@@ -158,6 +158,7 @@ namespace TheFacturerPro
                 string sFileNamed = choof2dlog.FileName;
                 LlegirXML lector2 = new LlegirXML(datasetImportatEditar, sFileNamed);
                 datasetImportatEditar = lector2.ReadXmlIntoDataSet();
+
                 Form2 form2 = new Form2();
                 form2.setDataset(datasetImportatEditar);
                 form2.Show();

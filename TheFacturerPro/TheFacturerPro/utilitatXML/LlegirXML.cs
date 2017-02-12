@@ -17,7 +17,7 @@ namespace TheFacturerPro.utilitatXML
     {
         private DataSet dataset;
         private String xmlFileName;
-        public DataSet newdataset;
+        public DataSet newdataset= new DataSet();
 
         public LlegirXML(DataSet dataset, String xmlFileName)
         {
@@ -202,15 +202,17 @@ namespace TheFacturerPro.utilitatXML
 
         public DataSet ReadXmlIntoDataSet()
         {
-            using (FileStream fsReaderStream = new FileStream(this.xmlFileName, FileMode.Open))
-            {
-                using (XmlTextReader xmlReader = new XmlTextReader(fsReaderStream))
-                {
-                    this.newdataset.ReadXml(xmlReader, XmlReadMode.ReadSchema);
-                }
-            }
-            return newdataset;
+            this.newdataset.ReadXml(this.xmlFileName, XmlReadMode.InferSchema);
+            /* using (FileStream fsReaderStream = new FileStream(this.xmlFileName, FileMode.Open))
+             {
+                 using (XmlTextReader xmlReader = new XmlTextReader(fsReaderStream))
+                 {
+                     this.newdataset.ReadXml(xmlReader, XmlReadMode.InferSchema);
+                 }
+             }*/
+             return newdataset;
+
+         }
         }
-    }
 
 }
