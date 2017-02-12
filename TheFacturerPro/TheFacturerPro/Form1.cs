@@ -20,7 +20,6 @@ namespace TheFacturerPro
         {
             StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
-            //hola
         }
 
         private void clientsBindingNavigatorSaveItem_Click(object sender, EventArgs e)

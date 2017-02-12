@@ -12,11 +12,13 @@ using System.Threading;
 
 namespace TheFacturerPro
 {
+    //Clase per iniciar sessió amb l'usuari i la contrassenya de la BD.
     public partial class Login : Form
     {
         string connectionString;
         string[] strSeparatPuntComa; 
 
+        //Constructor que prepara el camp de la contrassenya i inicia el connectionString.
         public Login()
         {
             StartPosition = FormStartPosition.CenterScreen;
@@ -30,6 +32,7 @@ namespace TheFacturerPro
 
         }
 
+        //Obté la contrassenya del connectionString.
         private string obtenirPass() {
 
             string[] strPassSeparat = strSeparatPuntComa[1].Split('=');
@@ -37,6 +40,7 @@ namespace TheFacturerPro
             return strPassSeparat[1];
         }
 
+        //Obté l'usuari del connectionString.
         private string obtenirUsuari()
         {
 
@@ -45,6 +49,7 @@ namespace TheFacturerPro
             return strPassSeparat[1];
         }
 
+        //Mètode del botó validar al fer click.
         private void btnValidar_Click(object sender, EventArgs e)
         {
 
@@ -52,6 +57,8 @@ namespace TheFacturerPro
 
         }
 
+        //Mètode que comproba la correctesa de l'usuari i la contrassenya.
+        //I executa la barra de progrès que donarà lloc posteriorment al formulari principal.
         private void Validar() {
             if (textBox1.Text.Equals(obtenirUsuari()) && textBox2.Text.Equals(obtenirPass()))
             {
@@ -59,12 +66,10 @@ namespace TheFacturerPro
                 MessageBox.Show("Validació correcte");
                 this.Hide();
                 Progres progresForm = new Progres();
+                progresForm.Closed += (s, args) => this.Close();
                 progresForm.Show();
                 progresForm.Loaded();
 
-                Form1 formulari = new Form1();
-                formulari.Closed += (s, args) => this.Close();
-                formulari.Show();
             }
             else
             {
@@ -74,6 +79,7 @@ namespace TheFacturerPro
             };
         }
 
+        //Utilitzat per un message box que apareixi nomès uns segons.
         public void CloseIt()
         {
             Thread.Sleep(500);
@@ -82,6 +88,7 @@ namespace TheFacturerPro
             System.Windows.Forms.SendKeys.SendWait(" ");
         }
 
+        //Utilitzat per validar en càs que pressionem la tecla enter en qualsevol dels dos textbox.
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
