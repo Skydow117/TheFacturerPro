@@ -37,6 +37,7 @@ namespace TheFacturerPro
 
             Principal formulari = new Principal();
             formulari.Closed += (s, args) => this.Close();
+            this.Hide();
             formulari.Show();
         }
 
